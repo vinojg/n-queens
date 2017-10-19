@@ -62,7 +62,7 @@
     },
 
 
-/*
+    /*
          _             _     _
      ___| |_ __ _ _ __| |_  | |__   ___ _ __ ___ _
     / __| __/ _` | '__| __| | '_ \ / _ \ '__/ _ (_)
@@ -134,12 +134,36 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      var col = majorDiagonalColumnIndexAtFirstRow;
+      var count = 0;
+      
+      for (var i = 0; i < this.get('n'); i++) {
+        if (this._isInBounds(i, col)) {
+          if (this.get(i)[col] === 1) {
+            count ++;
+          }
+          if (count > 1) {
+            return true;
+          }
+        }
+        col ++;
+      }
+      
+      return false;
     },
 
     // test if any major diagonals on this board contain conflicts
     hasAnyMajorDiagonalConflicts: function() {
-      return false; // fixme
+      var n = this.get('n');
+      var start = - n + 2;
+      var end = n - 2;
+      
+      for (var i = start; i <= end; i++) {
+        if (this.hasMajorDiagonalConflictAt(i)) {
+          return true;
+        }
+      }
+      return false;
     },
 
 
