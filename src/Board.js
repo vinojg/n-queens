@@ -195,7 +195,7 @@
     hasAnyMinorDiagonalConflicts: function() {
       var n = this.get('n');
       var start = 1;
-      var end = n + 1;
+      var end = 2 * n + 3;
       
       for (var i = start; i <= end; i++) {
         if (this.hasMinorDiagonalConflictAt(i)) {
